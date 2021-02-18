@@ -1,0 +1,6 @@
+export const FILTERS = {
+  ALL: "ALL",
+  URGENT: "URGENT",
+  COMPLETED: "COMPLETED",
+  UNCOMPLETED: "UNCOMPLETED",
+};
