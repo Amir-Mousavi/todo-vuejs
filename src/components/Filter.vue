@@ -64,17 +64,18 @@ export default {
     isCompletedActive: ({ task: { filter } }) => filter === FILTERS.COMPLETED,
     isUncompletedActive: ({ task: { filter } }) =>
       filter === FILTERS.UNCOMPLETED,
+    isUrgentActive: ({ task: { filter } }) => filter === FILTERS.URGENT,
     leftNumbers: ({ task: { tasks } }) =>
       tasks.filter((task) => !task.isCompleted).length,
     isAnyCompletedAvailable: ({ task: { tasks } }) =>
       tasks.some((task) => task.isCompleted),
-    isUrgentActive: ({ task: { filter } }) => filter === FILTERS.URGENT,
   }),
 
   methods: {
     changeFilter(newFilter) {
       this.$store.commit("changeFilter", newFilter);
     },
+
     clearCompleted() {
       this.$store.commit("clearCompleted");
     },
@@ -84,7 +85,7 @@ export default {
 
 <style scoped>
 .root {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -99,6 +100,7 @@ div {
 .filter-wrapper {
   flex-grow: 1;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
@@ -125,10 +127,9 @@ button:disabled {
   cursor: no-drop;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   .filter-wrapper {
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
   }
 
   button {
@@ -141,6 +142,9 @@ button:disabled {
 }
 
 .btn-clear {
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
   background: #eeedf1;
 }
 

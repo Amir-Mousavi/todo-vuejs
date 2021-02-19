@@ -13,6 +13,16 @@
       @keydown.enter="onEnter"
       placeholder="What needs to be done?"
     />
+    <div class="urgent">
+      <label for="urgentCheckbox">Urgent</label>
+      <input
+        class="checkbox"
+        @change="onChangeUrgent"
+        :checked="isUrgent"
+        name="urgentCheckbox"
+        type="checkbox"
+      />
+    </div>
   </div>
 </template>
 
@@ -30,15 +40,27 @@ export default {
   data() {
     return {
       value: "",
+      isUrgent: false,
     };
   },
 
   methods: {
     onEnter() {
       if (this.value) {
-        this.$store.commit("addTask", this.value);
+        this.$store.commit("addTask", {
+          title: this.value,
+          isUrgent: this.isUrgent,
+        });
         this.value = "";
+
+        setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+        }, 0);
       }
+    },
+
+    onChangeUrgent({ target: { checked } }) {
+      this.isUrgent = checked;
     },
 
     onCheckAll({ target: { checked } }) {
@@ -52,6 +74,7 @@ export default {
 div {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: left;
   border-radius: 6px;
   position: relative;
@@ -61,12 +84,19 @@ div {
 }
 
 .checkbox {
-  margin-left: 25px;
   width: 45px;
+  margin-left: 25px;
+  margin-right: 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   cursor: pointer;
   height: 28px;
+}
+
+@media (max-width: 880px) {
+  .checkbox {
+    margin-left: 30px;
+  }
 }
 
 .text-input {
@@ -94,5 +124,25 @@ input:focus {
 
 input::placeholder {
   color: #ccc;
+}
+
+.urgent {
+  display: flex;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: center;
+  top: 5px;
+  border: none;
+  box-shadow: none !important;
+}
+
+.urgent > input,
+label {
+  border: none;
+  outline: none;
+}
+
+.urgent > input {
+  margin-left: 10px;
 }
 </style>

@@ -24,16 +24,18 @@ export default {
 
 <style scoped>
 div {
-  animation: fadein 0.8s;
   background: #fff;
+  animation: fadein 0.8s;
 }
 
 @keyframes fadein {
   from {
     opacity: 0.2;
+    background: #ddd;
   }
   to {
     opacity: 1;
+    background: #fff;
   }
 }
 </style>

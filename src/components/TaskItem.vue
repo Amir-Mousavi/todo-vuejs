@@ -1,18 +1,18 @@
 <template>
   <div :class="{ completed: task.isCompleted }">
     <input
-      @click="click"
       type="checkbox"
       class="checkbox"
       v-model="task.isCompleted"
+      @click="toggleCompleteness"
     />
     <label>
       {{ task.title }}
     </label>
     <button
       title="Urgent"
-      v-if="!task.urgent"
       class="btn-urgent"
+      v-if="!task.urgent"
       @click="toggleUrgent"
     >
       <img width="18" height="18" src="../assets/flag.svg" />
@@ -20,8 +20,8 @@
     <button
       v-else
       title="Undo Urgent"
-      class="btn-urgent btn-urgent-red"
       @click="toggleUrgent"
+      class="btn-urgent btn-urgent-red"
     >
       <img width="18" height="18" src="../assets/flag_red.svg" />
     </button>
@@ -37,7 +37,7 @@ export default {
   name: "TaskItem",
   props: ["task"],
   methods: {
-    click() {
+    toggleCompleteness() {
       this.$store.commit("toggleCompleteness", this.task.id);
     },
     remove() {
@@ -70,24 +70,40 @@ label {
   flex-grow: 1;
   display: block;
   font-size: 14px;
-  font-family: Inter;
   line-height: 16px;
+  font-family: Inter;
   font-style: normal;
   font-weight: normal;
   word-break: break-all;
   transition: color 0.4s;
 }
 .completed {
-  transition: text-decoration 0.5s;
+  color: #ccc;
+  animation: textanim 0.8s;
   text-decoration: line-through;
 }
 
+@keyframes textanim {
+  from {
+    text-decoration: none;
+  }
+  to {
+    text-decoration: line-through;
+  }
+}
+
 button {
-  visibility: hidden;
-  cursor: pointer;
   border: none;
   outline: none;
+  cursor: pointer;
   background: none;
+  visibility: hidden;
+}
+
+@media (max-width: 600px) {
+  button {
+    visibility: visible;
+  }
 }
 
 div:hover > button {

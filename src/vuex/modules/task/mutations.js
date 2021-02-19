@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
-export const addTask = (state, title) => {
+export const addTask = (state, { title, isUrgent }) => {
   state.tasks = [
-    { id: uuidv4(), title, isCompleted: false, urgent: false },
     ...state.tasks,
+    { id: uuidv4(), title, isCompleted: false, urgent: isUrgent },
   ];
 };
 

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import VuexPersistence from "vuex-persist";
+import VuexPersistence from "vuex-persist";
 
 import task from "./modules/task";
 
@@ -14,8 +14,8 @@ const store = new Vuex.Store({
   getters: {},
 });
 
-// new VuexPersistence({
-//   storage: window.localStorage,
-// }).plugin(store);
+new VuexPersistence({
+  storage: window.localStorage,
+}).plugin(store);
 
 export default store;
