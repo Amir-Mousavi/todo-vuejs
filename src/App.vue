@@ -86,15 +86,10 @@ body {
 
   background-color: #fff;
   border: 1px solid #ccc;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
 }
 
 .checkbox:checked {
   background: #fff;
-  appearance: unset;
-  -moz-appearance: unset;
 }
 
 .checkbox:checked {
