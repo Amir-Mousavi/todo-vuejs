@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="task in tasks" :key="task.id">
+    <div class="task-item-wrapper" v-for="task in tasks" :key="task.id">
       <TaskItem :task="task" />
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+.task-item-wrapper {
   background: #fff;
   animation: fadein 0.8s;
 }

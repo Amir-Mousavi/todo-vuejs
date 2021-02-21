@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div class="task-input">
     <input
-      :checked="isAllActive"
-      @change="onCheckAll"
-      class="checkbox"
       type="checkbox"
+      @change="onCheckAll"
+      :checked="isAllActive"
+      class="checkbox task-input__checkbox"
     />
     <input
       type="text"
       v-model="value"
-      class="text-input"
       @keydown.enter="onEnter"
+      class="task-input__text-input"
       placeholder="What needs to be done?"
     />
-    <div class="urgent">
+    <div class="task-input__urgent">
       <label for="urgentCheckbox">Urgent</label>
       <input
         class="checkbox"
@@ -71,39 +71,31 @@ export default {
 </script>
 
 <style scoped>
-div {
+.task-input {
   display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: left;
   border-radius: 6px;
   position: relative;
+  align-items: center;
   background: #ffffff;
-  border-bottom: 1px solid #ededed;
-  margin-bottom: 10px;
 }
 
-.checkbox {
-  width: 45px;
-  margin-left: 25px;
-  margin-right: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  height: 28px;
+.task-input__checkbox {
+  margin-left: 24px;
+  margin-right: 20px;
 }
 
 @media (max-width: 880px) {
-  .checkbox {
+  .task-input__checkbox {
     margin-left: 30px;
   }
 }
 
-.text-input {
-  width: 100%;
+.task-input__text-input {
   border: none;
-  border-radius: 0;
+  flex-grow: 4;
   text-indent: 0;
+  border-radius: 0;
   text-shadow: none;
   word-spacing: normal;
   text-transform: none;
@@ -111,11 +103,22 @@ div {
   box-sizing: border-box;
   padding: 20px 20px 20px 0;
 
+  font-size: 14px;
+  line-height: 16px;
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
+
+  color: #413e49;
+}
+
+.task-input__text-input::placeholder {
   font-size: 14px;
+  color: #8c869e;
   line-height: 16px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
 }
 
 input:focus {
@@ -126,23 +129,29 @@ input::placeholder {
   color: #ccc;
 }
 
-.urgent {
+.task-input__urgent {
+  border: none;
   display: flex;
   margin-right: 5px;
   align-items: center;
   justify-content: center;
-  top: 5px;
-  border: none;
-  box-shadow: none !important;
 }
 
-.urgent > input,
-label {
+.task-input__urgent > label {
   border: none;
   outline: none;
+
+  font-size: 17px;
+  background: none;
+  color: #141518;
+  line-height: 20px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
 }
 
-.urgent > input {
+.task-input__urgent > input {
   margin-left: 10px;
+  margin-right: 20px;
 }
 </style>

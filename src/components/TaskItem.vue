@@ -1,5 +1,9 @@
 <template>
-  <div :class="{ completed: task.isCompleted }">
+  <div
+    :title="task.title"
+    class="task-item"
+    :class="{ 'task-item__completed': task.isCompleted }"
+  >
     <input
       type="checkbox"
       class="checkbox"
@@ -11,9 +15,9 @@
     </label>
     <button
       title="Urgent"
-      class="btn-urgent"
       v-if="!task.urgent"
       @click="toggleUrgent"
+      class="task-item__btn-urgent"
     >
       <img width="18" height="18" src="../assets/flag.svg" />
     </button>
@@ -21,7 +25,7 @@
       v-else
       title="Undo Urgent"
       @click="toggleUrgent"
-      class="btn-urgent btn-urgent-red"
+      class="task-item__btn-urgent task-item__btn-urgent-red"
     >
       <img width="18" height="18" src="../assets/flag_red.svg" />
     </button>
@@ -51,44 +55,47 @@ export default {
 </script>
 
 <style scoped>
-div {
+.task-item {
   display: flex;
   padding: 20px;
   font-size: 24px;
   text-align: left;
+  background: #fff;
   align-items: center;
   border-bottom: 1px solid #ededed;
 }
-.checkbox {
-  width: 45px;
-  height: 28px;
-  cursor: pointer;
-  background-color: #fff;
-  border: 1px solid #ccc;
+
+.task-item:hover {
+  background: #eeedf1;
 }
+
 label {
   flex-grow: 1;
   display: block;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 17px;
+  line-height: 20px;
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
+
+  text-overflow: clip;
+
+  color: #141518;
   word-break: break-all;
   transition: color 0.4s;
 }
-.completed {
-  color: #ccc;
+.task-item__completed {
+  color: gray;
   animation: textanim 0.8s;
   text-decoration: line-through;
 }
 
 @keyframes textanim {
   from {
-    text-decoration: none;
+    background: #f9f9fa;
   }
   to {
-    text-decoration: line-through;
+    color: #6f697d;
   }
 }
 
@@ -110,11 +117,12 @@ div:hover > button {
   visibility: visible;
 }
 
-.btn-urgent {
+.task-item__btn-urgent {
   margin-right: 10px;
+  margin-left: 20px;
 }
 
-.btn-urgent-red {
+.task-item__btn-urgent-red {
   visibility: visible;
 }
 </style>

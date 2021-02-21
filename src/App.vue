@@ -29,6 +29,18 @@ export default {
 <style>
 h1 {
   padding: 10px 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 64px;
+  /* identical to box height, or 100% */
+
+  color: #141518;
+}
+
+body {
+  background: #d4d1dc;
 }
 #app {
   margin: 20px;
@@ -36,20 +48,20 @@ h1 {
   position: relative;
   text-align: center;
   border-radius: 5px;
-  background: #f5f5f5;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
 }
 
 .freezed {
-  top: 0px;
+  top: 0;
   left: 30px;
   right: 30px;
   position: sticky;
+  margin-bottom: 10px;
   background: #fff;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #eee;
+  border-radius: 10px 10px 0 0;
 }
 
 @media (max-height: 600px) {
@@ -62,5 +74,30 @@ h1 {
   .freezed {
     position: unset;
   }
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+.checkbox:checked {
+  background: #fff;
+  appearance: unset;
+  -moz-appearance: unset;
+}
+
+.checkbox:checked {
+  background: #4e2bba;
 }
 </style>

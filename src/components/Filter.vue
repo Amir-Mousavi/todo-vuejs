@@ -1,35 +1,38 @@
 <template>
-  <div class="root">
+  <div class="filter">
     <div
-      class="item-left"
+      class="filter__item-left"
       v-bind:style="{
         opacity: !!leftNumbers ? 1 : 0,
       }"
     >
       {{ `${leftNumbers} ${leftNumbers === 1 ? "item left" : "items left"}` }}
     </div>
-    <div class="filter-wrapper">
+    <div class="filter__wrapper">
       <button
-        :class="{ active: isAllActive }"
+        class="filter__btn-filter"
+        :class="{ 'filter__btn-active': isAllActive }"
         @click="changeFilter(FILTERS.ALL)"
       >
         All
       </button>
       <button
-        :class="{ active: isCompletedActive }"
+        class="filter__btn-filter"
+        :class="{ 'filter__btn-active': isCompletedActive }"
         @click="changeFilter(FILTERS.COMPLETED)"
       >
         Completed
       </button>
       <button
-        :class="{ active: isUncompletedActive }"
+        class="filter__btn-filter"
+        :class="{ 'filter__btn-active': isUncompletedActive }"
         @click="changeFilter(FILTERS.UNCOMPLETED)"
       >
         Active
       </button>
       <button
-        class="btn-urgent"
-        :class="{ active: isUrgentActive }"
+        class="filter__btn-filter filter__btn-urgent"
+        :class="{ 'filter__btn-active': isUrgentActive }"
         @click="changeFilter(FILTERS.URGENT)"
       >
         Urgent
@@ -37,7 +40,7 @@
       </button>
     </div>
     <button
-      class="btn-clear"
+      class="filter__btn-clear"
       @click="clearCompleted"
       :disabled="!isAnyCompletedAvailable"
     >
@@ -84,20 +87,16 @@ export default {
 </script>
 
 <style scoped>
-.root {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-div {
+.filter {
   padding: 20px;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: 1px solid #b5b0c3;
 }
 
-.filter-wrapper {
+.filter__wrapper {
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
@@ -105,66 +104,114 @@ div {
   justify-content: center;
 }
 
-button {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+.filter__btn-filter {
+  width: 170px;
+  height: 52px;
 
   margin: 3px;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 16px 48px;
   border-radius: 8px;
   background: #f9f9fa;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 20px;
+  color: #8c869e;
 }
 
-button:hover {
+.filter__btn-filter:hover {
+  color: #413e49;
   background: #d4d1dc;
 }
 
-button:disabled {
+.filter__btn-filter:disabled {
   cursor: no-drop;
 }
 
+.filter__btn-clear {
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  background: none;
+  color: #141518;
+  line-height: 20px;
+  padding-left: 50px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.filter__btn-clear:hover {
+  text-decoration: underline;
+}
+
+.filter__btn-clear:disabled {
+  color: #8c869e;
+  background: none;
+}
+
+.filter__item-left {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+
+  font-size: 17px;
+  line-height: 20px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+
+  color: #141518;
+  animation: textanim 0.8s;
+}
+
 @media (max-width: 600px) {
-  .filter-wrapper {
+  .filter__wrapper {
     justify-content: center;
   }
 
-  button {
+  .filter__btn-filter {
     margin: 2px;
   }
 
   div {
     flex-direction: column;
   }
+
+  .filter__btn-clear {
+    transform: translateX(0px);
+  }
+
+  .filter__item-left {
+    transform: translateX(0px);
+  }
 }
 
-.btn-clear {
-  width: 200px;
-  max-width: 200px;
-  min-width: 200px;
+.filter__btn-active {
+  color: #413e49;
   background: #eeedf1;
 }
 
-.active {
-  background: #eeedf1;
+@keyframes textanim {
+  from {
+    opacity: 0;
+  }
+  to {
+    color: 1;
+  }
 }
 
-.item-left {
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
-}
-
-.btn-urgent {
+.filter__btn-urgent {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.btn-urgent > img {
+.filter__btn-urgent > img {
   margin-left: 10px;
 }
 </style>
